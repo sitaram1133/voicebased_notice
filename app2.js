@@ -1,7 +1,6 @@
 
 var express = require('express');
 var session = require('express-session');
-var nodemailer = require('nodemailer');
 var app = express();
 var fs = require("fs");
 
@@ -28,11 +27,9 @@ MongoClient.connect(url, function(err, db) {
   var destinations;
   if (err) throw err;
 
-
 app.get("/messagedata", (req, res) => {
   var dbo = db.db("vishwasdb");
   var collection = dbo.collection("message");
-
 
   collection.find({}).sort({_id:-1}).limit(1).toArray((error, result) => {
     if(error) {
@@ -96,7 +93,7 @@ app.get('/messages', function (req, res) {
 
 
 // Home Page
-app.get('/', (req, res) => res.send('Welcome! You are all set to go!'))
+app.get('/', (req, res) => res.send('Welcome! to voice notice Server'))
 
 // // Configure server
 // var server = app.listen(9000, '192.168.2.3', function (req, res) {
@@ -109,7 +106,7 @@ app.get('/', (req, res) => res.send('Welcome! You are all set to go!'))
 
 //////////////////////////////Over the Internet ///////////////////////////////////////////
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8051;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
