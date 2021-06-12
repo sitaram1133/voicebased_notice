@@ -31,7 +31,7 @@ app.get("/messagedata", (req, res) => {
   var dbo = db.db("vishwasdb");
   var collection = dbo.collection("message");
 
-  collection.find({}).sort({_id:-1}).limit(1).toArray((error, result) => {
+  collection.find({}, {txtdata: 1} ).sort({_id:-1}).limit(1).toArray((error, result) => {
     if(error) {
         return res.status(500).send(error);
     }
